@@ -1039,7 +1039,7 @@ static struct acpi_driver cmpc_ipml_acpi_driver = {
  */
 static int cmpc_keys_codes[] = {
 	KEY_UNKNOWN,
-	KEY_WLAN,
+	KEY_RFKILL, // Before KEY_WLAN
 	KEY_SWITCHVIDEOMODE,
 	KEY_BRIGHTNESSDOWN,
 	KEY_BRIGHTNESSUP,
@@ -1060,10 +1060,8 @@ static void cmpc_keys_handler(struct acpi_device *dev, u32 event)
 		code = cmpc_keys_codes[event & 0x0F];
 
 	/* HACK: Intel Classmate with Huayra */
-	if ((event & 0x0F) == 0x0B)
+	if ((KEY_MAX == code) && ((event & 0x0F) == 0x0B))
 		code = KEY_RFKILL;
-	else
-		pr_info("Unknown event: (0x%x)\n", event);
 	/* HACK: Intel Classmate with Huayra */
 
 	inputdev = dev_get_drvdata(&dev->dev);
