@@ -1,0 +1,9 @@
+Classmate Laptop Platform Driver
+================================
+
+This driver is a dkms driver to classmate platform extracted from kernel 3.16.
+
+> https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/drivers/platform/x86/classmate-laptop.c
+
+This Add/Fix support to Wifi key on the keyboard. See /* HACK: Intel Classmate
+with Huayra */ note on classmate-laptop.c file.

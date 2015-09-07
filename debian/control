@@ -1,0 +1,14 @@
+Source: classmate-laptop-dkms
+Section: kernel
+Priority: optional
+Maintainer: Matias De lellis <mati86dl@gmail.com>
+Build-Depends: debhelper (>= 8.0.0), dkms
+Standards-Version: 3.9.5
+
+Package: classmate-laptop-dkms
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, dkms, 
+ linux-headers-686-pae | linux-headers-amd64
+Description: Classmate laptop platform driver. This driver implements
+ the WLAN Key to disable Wireless with keyboard Fn+F1.
+

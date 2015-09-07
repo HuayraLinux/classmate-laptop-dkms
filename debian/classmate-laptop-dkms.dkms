@@ -1,0 +1,9 @@
+PACKAGE_VERSION="#MODULE_VERSION#"
+PACKAGE_NAME="classmate-laptop-dkms"
+MAKE="echo $PWD; make"
+
+BUILT_MODULE_NAME[0]="classmate-laptop"
+BUILT_MODULE_LOCATION[0]="."
+DEST_MODULE_LOCATION[0]="/updates/dkms/classmate-laptop"
+
+AUTOINSTALL="yes"

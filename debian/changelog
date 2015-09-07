@@ -1,0 +1,11 @@
+classmate-laptop-dkms (1.1) UNRELEASED; urgency=medium
+
+  * Fix V4 handler
+
+ -- Matias De lellis <mati86dl@gmail.com>  Mon, 07 Sep 2015 16:31:21 -0300
+
+classmate-laptop-dkms (1.0) unstable; urgency=medium
+
+  * Initial release. 
+
+ -- Matias De lellis <mati86dl@gmail.com>  Mon, 07 Sep 2015 15:14:23 -0300
