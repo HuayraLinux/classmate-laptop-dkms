@@ -5,6 +5,6 @@ KSRC := /lib/modules/$(KVER)/build
 PWD := $(shell pwd)
 
 
-all:
+prueba:
 	$(MAKE) -C $(KSRC) M=$(PWD) modules
 
