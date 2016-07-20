@@ -1039,7 +1039,7 @@ static struct acpi_driver cmpc_ipml_acpi_driver = {
  */
 static int cmpc_keys_codes[] = {
 	KEY_UNKNOWN,
-	KEY_RFKILL, // Before KEY_WLAN
+	KEY_WLAN,
 	KEY_SWITCHVIDEOMODE,
 	KEY_BRIGHTNESSDOWN,
 	KEY_BRIGHTNESSUP,
@@ -1048,6 +1048,8 @@ static int cmpc_keys_codes[] = {
 	KEY_CAMERA,
 	KEY_BACK,
 	KEY_FORWARD,
+	KEY_UNKNOWN,
+	KEY_RFKILL,
 	KEY_MAX
 };
 
@@ -1058,12 +1060,6 @@ static void cmpc_keys_handler(struct acpi_device *dev, u32 event)
 
 	if ((event & 0x0F) < ARRAY_SIZE(cmpc_keys_codes))
 		code = cmpc_keys_codes[event & 0x0F];
-
-	/* HACK: Intel Classmate with Huayra */
-	if ((KEY_MAX == code) && ((event & 0x0F) == 0x0B))
-		code = KEY_RFKILL;
-	/* HACK: Intel Classmate with Huayra */
-
 	inputdev = dev_get_drvdata(&dev->dev);
 	input_report_key(inputdev, code, !(event & 0x10));
 	input_sync(inputdev);
@@ -1131,16 +1127,14 @@ static int cmpc_init(void)
 	if (r)
 		goto failed_accel;
 
-	/* FIXME: Intel Classmate with Huayra */
-	/*r = acpi_bus_register_driver(&cmpc_accel_acpi_driver_v4);
+	r = acpi_bus_register_driver(&cmpc_accel_acpi_driver_v4);
 	if (r)
-		goto failed_accel_v4;*/
-	/* FIXME: Intel Classmate with Huayra */
+		goto failed_accel_v4;
 
 	return r;
 
-//failed_accel_v4:
-//	acpi_bus_unregister_driver(&cmpc_accel_acpi_driver);
+failed_accel_v4:
+	acpi_bus_unregister_driver(&cmpc_accel_acpi_driver);
 
 failed_accel:
 	acpi_bus_unregister_driver(&cmpc_tablet_acpi_driver);
@@ -1157,9 +1151,7 @@ failed_keys:
 
 static void cmpc_exit(void)
 {
-	/* FIXME: Intel Classmate with Huayra */
-	/*acpi_bus_unregister_driver(&cmpc_accel_acpi_driver_v4);*/
-	/* FIXME: Intel Classmate with Huayra */
+	acpi_bus_unregister_driver(&cmpc_accel_acpi_driver_v4);
 	acpi_bus_unregister_driver(&cmpc_accel_acpi_driver);
 	acpi_bus_unregister_driver(&cmpc_tablet_acpi_driver);
 	acpi_bus_unregister_driver(&cmpc_ipml_acpi_driver);
