@@ -1,6 +1,12 @@
-classmate-laptop-dkms (1.1) UNRELEASED; urgency=medium
+classmate-laptop-dkms (1.2) torbellino; urgency=medium
 
-  * Fix V4 handler
+  * Fix accelerometer
+
+ -- Matias De lellis <mati86dl@gmail.com>  Wed, 20 Jul 2016 11:45:57 -0300
+
+classmate-laptop-dkms (1.1) torbellino; urgency=medium
+
+  * Fix V4 handle 
 
  -- Matias De lellis <mati86dl@gmail.com>  Mon, 07 Sep 2015 16:31:21 -0300
 
